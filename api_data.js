@@ -9,9 +9,9 @@ define({ api: [
     "version": "0.0.1",
     "parameter": {
       "fields": {
-        "URL": [
+        "Path": [
           {
-            "group": "URL",
+            "group": "Path",
             "type": "Number",
             "field": "id",
             "optional": false,
@@ -55,9 +55,9 @@ define({ api: [
     "version": "0.0.1",
     "parameter": {
       "fields": {
-        "URL": [
+        "Path": [
           {
-            "group": "URL",
+            "group": "Path",
             "type": "Number",
             "field": "id",
             "optional": false,
@@ -199,6 +199,10 @@ define({ api: [
       {
         "title": "Example usage:",
         "content": "   curl -ik https://localhost/api/field?token=*token* \\\n   --data \"description=rechnung&value=13.54&ust=19&date=2014-02-23 14:00:00&type=in\"\n"
+      },
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/field?token=*token* \\\n   -H \"Content-Type:application/json\" \\\n   --data-binary '{\"description\":\"test\", \"value\":143.23, \"ust\":7, \"date\":\"2014-02-23\", \"type\":\"out\"}'\n"
       }
     ],
     "success": {
@@ -305,6 +309,10 @@ define({ api: [
       {
         "title": "Example usage:",
         "content": "   curl -X put -ik https://localhost/api/field?token=*token* \\\n   --data \"description=rechnung&value=13.54&ust=19&date=2014-02-23 14:00:00&type=in\"\n"
+      },
+      {
+        "title": "Example usage:",
+        "content": "   curl -X put -ik https://localhost/api/field?token=*token* \\\n   -H \"Content-Type:application/json\" \\\n   --data-binary '{\"description\":\"test\", \"value\":143.23, \"ust\":7, \"date\":\"2014-02-23\", \"type\":\"out\"}'\n"
       }
     ],
     "success": {
@@ -316,6 +324,54 @@ define({ api: [
       ]
     },
     "filename": "./controller/field.js"
+  },
+  {
+    "type": "get",
+    "url": "/api/fields",
+    "title": "get",
+    "description": "Get all fields for a user.",
+    "name": "FieldsGet",
+    "group": "Fields",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/fields?token=*token*\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n   [\n     {\n       \"id\": 1,\n       \"description\": \"xxx\",\n       \"value\": 142.54,\n       \"ust\": 19,\n       \"date\": \"2014-02-22T15:57:00.000Z\",\n       \"type\": \"in\"\n     },\n     {\n       \"id\": 6,\n       \"description\": \"test\",\n       \"value\": 143.23,\n       \"ust\": 7,\n       \"date\": \"2014-02-22T23:00:00.000Z\",\n       \"type\": \"out\"\n     }\n   ]\n"
+        }
+      ],
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "field": "fields",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      }
+    },
+    "filename": "./controller/fields.js"
   },
   {
     "type": "post",
@@ -705,7 +761,7 @@ define({ api: [
   },
   {
     "type": "",
-    "url": "public",
+    "url": "private",
     "group": "authenticator.js",
     "version": "0.0.0",
     "filename": "./node_modules/passport/lib/authenticator.js"
@@ -719,7 +775,7 @@ define({ api: [
   },
   {
     "type": "",
-    "url": "private",
+    "url": "public",
     "group": "authenticator.js",
     "version": "0.0.0",
     "filename": "./node_modules/passport/lib/authenticator.js"
