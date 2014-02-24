@@ -1,0 +1,1049 @@
+[
+  {
+    "type": "delete",
+    "url": "/api/field/:id",
+    "title": "delete",
+    "description": "delete field by ID.",
+    "name": "FieldDelete",
+    "group": "Field",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "URL": [
+          {
+            "group": "URL",
+            "type": "Number",
+            "field": "id",
+            "optional": false,
+            "description": ""
+          }
+        ],
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -X delete -ik https://localhost/api/field/*id*?token=*token*\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 204 No Content\n"
+        }
+      ]
+    },
+    "filename": "./controller/field.js"
+  },
+  {
+    "type": "get",
+    "url": "/api/field/:id",
+    "title": "get",
+    "description": "Get field by ID.",
+    "name": "FieldGet",
+    "group": "Field",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "URL": [
+          {
+            "group": "URL",
+            "type": "Number",
+            "field": "id",
+            "optional": false,
+            "description": ""
+          }
+        ],
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/field/*id*?token=*token*\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n   {\n      \"id\": \"234\",\n      \"description\": \"Hier steht eine Beschreibung\",\n      \"value\": 1234.54,\n      \"ust\": 19,\n      \"date\": \"2014-02-22 14:00:00\",\n      \"type\": \"in\"\n   }\n"
+        }
+      ],
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "id",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "description",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "value",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "ust",
+            "optional": false,
+            "description": "german \"umsatzsteuer\" - either 0, 7, or 19"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "date",
+            "optional": false,
+            "description": "formated like this \"YYYY-MM-DD HH-MM-SS\""
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "type",
+            "optional": false,
+            "description": "possible values: \"in\" or \"out\""
+          }
+        ]
+      }
+    },
+    "filename": "./controller/field.js"
+  },
+  {
+    "type": "post",
+    "url": "/api/field",
+    "title": "create",
+    "description": "Create field for user.",
+    "name": "FieldPost",
+    "group": "Field",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": ""
+          }
+        ],
+        "Body": [
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "description",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Body",
+            "type": "Number",
+            "field": "value",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Body",
+            "type": "Number",
+            "field": "ust",
+            "optional": false,
+            "description": "german \"umsatzsteuer\" - either 0, 7, or 19"
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "date",
+            "optional": false,
+            "description": "formated like this \"YYYY-MM-DD HH-MM-SS\""
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "type",
+            "optional": false,
+            "description": "possible values: \"in\" or \"out\""
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/field?token=*token* \\\n   --data \"description=rechnung&value=13.54&ust=19&date=2014-02-23 14:00:00&type=in\"\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 201 Created\n"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "409 Conflict": [
+          {
+            "group": "409",
+            "field": "code",
+            "optional": false,
+            "description": "InvalidArgument"
+          },
+          {
+            "group": "409",
+            "field": "message",
+            "optional": false,
+            "description": "<i>multiple</i>"
+          }
+        ],
+        "500 Server error": [
+          {
+            "group": "500",
+            "field": "code",
+            "optional": false,
+            "description": "Internal"
+          },
+          {
+            "group": "500",
+            "field": "message",
+            "optional": false,
+            "description": "field couldn't be created"
+          }
+        ]
+      }
+    },
+    "filename": "./controller/field.js"
+  },
+  {
+    "type": "put",
+    "url": "/api/field/:id",
+    "title": "update",
+    "description": "Update specific field for user.",
+    "name": "FieldPut",
+    "group": "Field",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": ""
+          }
+        ],
+        "Body": [
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "description",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Body",
+            "type": "Number",
+            "field": "value",
+            "optional": false,
+            "description": ""
+          },
+          {
+            "group": "Body",
+            "type": "Number",
+            "field": "ust",
+            "optional": false,
+            "description": "german \"umsatzsteuer\" - either 0, 7, or 19"
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "date",
+            "optional": false,
+            "description": "formated like this \"YYYY-MM-DD HH-MM-SS\""
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "type",
+            "optional": false,
+            "description": "possible values: \"in\" or \"out\""
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -X put -ik https://localhost/api/field?token=*token* \\\n   --data \"description=rechnung&value=13.54&ust=19&date=2014-02-23 14:00:00&type=in\"\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 204 No Content\n"
+        }
+      ]
+    },
+    "filename": "./controller/field.js"
+  },
+  {
+    "type": "post",
+    "url": "/api/user/auth",
+    "title": "authenticate",
+    "description": "Try to authenticate user with email and password.",
+    "name": "UserAuthPost",
+    "group": "User",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Body": [
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "email",
+            "optional": false,
+            "description": "User's unique Email"
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "pwd",
+            "optional": false,
+            "description": "User's password"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/user/auth --data \"email=*email*&pwd=*password*\"\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n   {\n      \"token\": \"737836f2b7080f0cc0dd55b2987c60018fe12e1\",\n      \"user\": {\n        \"id\": 923,\n        \"email\": \"phil@easyumst.de\",\n        \"confirmed\": false\n      }\n   }\n"
+        }
+      ],
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": "Token for further API authentication"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "field": "user",
+            "optional": false,
+            "description": "User object"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
+        "500 Server error": [
+          {
+            "group": "500",
+            "field": "code",
+            "optional": false,
+            "description": "Internal"
+          },
+          {
+            "group": "500",
+            "field": "message",
+            "optional": false,
+            "description": "couldn't save token"
+          }
+        ]
+      }
+    },
+    "filename": "./controller/user.js"
+  },
+  {
+    "type": "get",
+    "url": "/api/user/logout",
+    "title": "logout",
+    "description": "Logout user.",
+    "name": "UserLogoutGet",
+    "group": "User",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Query": [
+          {
+            "group": "Query",
+            "type": "String",
+            "field": "token",
+            "optional": false,
+            "description": "User's auth token"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/user/logout?token=*token*\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 204 No Content\n"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "500 Server error": [
+          {
+            "group": "500",
+            "field": "code",
+            "optional": false,
+            "description": "Internal"
+          },
+          {
+            "group": "500",
+            "field": "message",
+            "optional": false,
+            "description": "user couldn't be created"
+          }
+        ]
+      }
+    },
+    "filename": "./controller/user.js"
+  },
+  {
+    "type": "post",
+    "url": "/api/user",
+    "title": "register",
+    "description": "Try to register user with email and password.",
+    "name": "UserPost",
+    "group": "User",
+    "version": "0.0.1",
+    "parameter": {
+      "fields": {
+        "Body": [
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "email",
+            "optional": false,
+            "description": "User's unique Email"
+          },
+          {
+            "group": "Body",
+            "type": "String",
+            "field": "pwd",
+            "optional": false,
+            "description": "User's password"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "   curl -ik https://localhost/api/user --data \"email=*email*&pwd=*password*\"\n"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 201 Created\n"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "409 Conflict": [
+          {
+            "group": "409",
+            "field": "code",
+            "optional": false,
+            "description": "InvalidArgument"
+          },
+          {
+            "group": "409",
+            "field": "message",
+            "optional": false,
+            "description": "<i>multiple</i>"
+          }
+        ],
+        "500 Server error": [
+          {
+            "group": "500",
+            "field": "code",
+            "optional": false,
+            "description": "Internal"
+          },
+          {
+            "group": "500",
+            "field": "message",
+            "optional": false,
+            "description": "user couldn't be created"
+          }
+        ]
+      }
+    },
+    "filename": "./controller/user.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "actions.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/actions.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "actions.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/actions.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "actions.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/actions.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "actions.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/actions.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "actions.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/actions.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticate.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/authenticate.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "authenticationerror.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/errors/authenticationerror.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "authenticator.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/authenticator.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "badrequesterror.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/lib/passport-hash/errors/badrequesterror.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "bunyan.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/bunyan/lib/bunyan.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "connect.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/framework/connect.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "context.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/context/http/context.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/escape-regexp-component/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "private",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/restify/node_modules/qs/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "index.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/index.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "initialize.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/middleware/initialize.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "initialize.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/middleware/initialize.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "request.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/http/request.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "session.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/strategies/session.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "session.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/strategies/session.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "session.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/strategies/session.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "session.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/lib/strategies/session.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "strategy.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/strategy.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "strategy.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/node_modules/passport/lib/passport/strategy.js"
+  },
+  {
+    "type": "",
+    "url": "protected",
+    "group": "strategy.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/lib/passport-hash/strategy.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "strategy.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport-hash/lib/passport-hash/strategy.js"
+  },
+  {
+    "type": "",
+    "url": "public",
+    "group": "strategy.js",
+    "version": "0.0.0",
+    "filename": "./node_modules/passport/node_modules/passport-strategy/lib/strategy.js"
+  }
+]
