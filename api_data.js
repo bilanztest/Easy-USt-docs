@@ -36,10 +36,56 @@ define({ api: [
       }
     ],
     "success": {
+      "fields": {
+        "204 No Content": [
+          {
+            "group": "204",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
           "content": "   HTTP/1.1 204 No Content\n"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
+        "404 Not found": [
+          {
+            "group": "404",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 404 Not Found\n"
         }
       ]
     },
@@ -135,6 +181,42 @@ define({ api: [
         ]
       }
     },
+    "error": {
+      "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
+        "404 Not found": [
+          {
+            "group": "404",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 404 Not Found\n"
+        }
+      ]
+    },
     "filename": "./controller/field.js"
   },
   {
@@ -206,6 +288,16 @@ define({ api: [
       }
     ],
     "success": {
+      "fields": {
+        "201 Created": [
+          {
+            "group": "201",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
@@ -215,6 +307,20 @@ define({ api: [
     },
     "error": {
       "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
         "409 Conflict": [
           {
             "group": "409",
@@ -243,7 +349,17 @@ define({ api: [
             "description": "field couldn't be created"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 409 Conflict\n   {\n      \"code\": \"Internal\",\n      \"message\": \"blah blah\"\n   }\n"
+        }
+      ]
     },
     "filename": "./controller/field.js"
   },
@@ -316,10 +432,68 @@ define({ api: [
       }
     ],
     "success": {
+      "fields": {
+        "204 No Content": [
+          {
+            "group": "204",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ],
+        "304 Not modified": [
+          {
+            "group": "304",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
           "content": "   HTTP/1.1 204 No Content\n"
+        },
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 304 Not modified\n"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
+        "404 Not found": [
+          {
+            "group": "404",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 404 Not Found\n"
         }
       ]
     },
@@ -364,7 +538,7 @@ define({ api: [
           {
             "group": "Success 200",
             "type": "Object[]",
-            "field": "fields",
+            "field": "_none_",
             "optional": false,
             "description": ""
           }
@@ -463,7 +637,13 @@ define({ api: [
             "description": "couldn't save token"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        }
+      ]
     },
     "filename": "./controller/user.js"
   },
@@ -495,6 +675,16 @@ define({ api: [
       }
     ],
     "success": {
+      "fields": {
+        "204 No Content": [
+          {
+            "group": "204",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
@@ -504,6 +694,20 @@ define({ api: [
     },
     "error": {
       "fields": {
+        "401 Unauthorized": [
+          {
+            "group": "401",
+            "field": "code",
+            "optional": false,
+            "description": "Unauthorized"
+          },
+          {
+            "group": "401",
+            "field": "message",
+            "optional": false,
+            "description": "credentials unknown"
+          }
+        ],
         "500 Server error": [
           {
             "group": "500",
@@ -515,10 +719,20 @@ define({ api: [
             "group": "500",
             "field": "message",
             "optional": false,
-            "description": "user couldn't be created"
+            "description": "message user couldn't be logged out"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 401 Unauthorized\n   {\n      \"code\": \"Unauthorized\",\n      \"message\": \"credentials unknown\"\n   }\n"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 500 Internal Server Error \n   {\n      \"code\": \"Internal\",\n      \"message\": \"message user couldn't be logged out\"\n   }\n"
+        }
+      ]
     },
     "filename": "./controller/user.js"
   },
@@ -557,6 +771,16 @@ define({ api: [
       }
     ],
     "success": {
+      "fields": {
+        "201 Created": [
+          {
+            "group": "201",
+            "field": "_none_",
+            "optional": false,
+            "description": ""
+          }
+        ]
+      },
       "examples": [
         {
           "title": "Success-Response:",
@@ -594,7 +818,13 @@ define({ api: [
             "description": "user couldn't be created"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "   HTTP/1.1 409 Conflict\n   {\n      \"code\": \"Internal\",\n      \"message\": \"blah blah\"\n   }\n"
+        }
+      ]
     },
     "filename": "./controller/user.js"
   },
