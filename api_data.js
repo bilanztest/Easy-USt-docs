@@ -292,16 +292,16 @@ define({ api: [
         "201 Created": [
           {
             "group": "201",
-            "field": "_none_",
+            "field": "id",
             "optional": false,
-            "description": ""
+            "description": "newly created field's id"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "   HTTP/1.1 201 Created\n"
+          "content": "   HTTP/1.1 201 Created\n   {\n      \"id\": 12\n   }\n"
         }
       ]
     },
@@ -775,16 +775,16 @@ define({ api: [
         "201 Created": [
           {
             "group": "201",
-            "field": "_none_",
+            "field": "id",
             "optional": false,
-            "description": ""
+            "description": "newly created user's id"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "   HTTP/1.1 201 Created\n"
+          "content": "   HTTP/1.1 201 Created\n   {\n      \"id\": 23\n   }\n"
         }
       ]
     },
